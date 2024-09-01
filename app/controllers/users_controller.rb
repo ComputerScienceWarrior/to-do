@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   def show
   end
 
@@ -8,11 +9,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:id] = user.id
-      redirect_to user_path user
+    @user = User.new(user_params)
+    if @user.save
+      session[:id] = @user.id
+      flash[:notice] = 'User was successfully created.'
+      redirect_to @user
     else
+      flash.now[:alert] = 'Error creating user. Please fix the problems below.'
       render :new
     end
   end
@@ -22,13 +25,18 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path @user
+      flash[:notice] = 'User was successfully updated.'
+      redirect_to @user
     else
+      flash.now[:alert] = 'Error updating user. Please fix the problems below.'
       render :edit
     end
   end
 
   def destroy
+    @user.destroy
+    flash[:notice] = 'User was successfully deleted.'
+    redirect_to users_path
   end
 
   private
