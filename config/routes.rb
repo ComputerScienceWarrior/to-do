@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :list, only: [:index, :show] do
     resources :list_item, only: [:index]
   end
+
+  root "pages#home"
 end
