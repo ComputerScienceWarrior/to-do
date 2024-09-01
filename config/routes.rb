@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  resources :user, only: [:show, :new, :edit, :update, :destroy] do
-    resources :list, only: [:new, :create, :edit, :update, :destroy]
-  end
-
-  resources :list, only: [:index, :show] do
-    resources :list_item, only: [:index]
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :lists, only: [:index, :show] do
+    resources :list_items, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
   root "pages#home"
