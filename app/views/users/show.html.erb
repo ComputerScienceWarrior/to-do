@@ -1,2 +1,8 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+Lists for <b><%= @user.name %></b>:
+<select>
+    <%= @user.lists do |list, i| %>
+        <option value=<%= i %>><link_to list.title, list_path(list)></option>
+    <% end %>
+</select>
+
+<p>Create List: <%= link_to "New List", new_user_list_path(@user) %> </p>
