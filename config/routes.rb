@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :list_items, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  get '/login', to: 'sessions#create'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 
   root "pages#home"
 end
