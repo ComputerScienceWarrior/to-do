@@ -2,8 +2,13 @@ class ListsController < ApplicationController
   before_action :find_list, only: [:show, :update, :destroy]
   before_action :find_user, only: [:new, :create]
 
+  def index
+    @lists = current_user.lists
+  end
+
   def new
     @list = List.new(user_id: @user.id)
+    @list.list_items.build
   end
 
   def show
