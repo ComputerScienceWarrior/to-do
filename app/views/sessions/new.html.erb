@@ -1,0 +1,6 @@
+<h1>Login</h1>
+<%= form_for :user do |f| %>
+    <%= f.text_field :email, placeholder: 'Enter Email Address' %><br/>
+    <%= f.text_field :password, placeholder: 'Enter Password', type: 'password' %><br/>
+    <%= f.submit "Login" %>
+<% end %>

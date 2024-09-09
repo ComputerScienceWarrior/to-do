@@ -1,0 +1,5 @@
+New List:
+<%= form_with(model: @list, url: user_lists_path(@user), local: true) do |f| %>
+    <%= f.text_field :title, placeholder: 'List Title' %><br/>
+    <%= f.submit "Create New List" %>
+<% end %>
